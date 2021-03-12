@@ -16,12 +16,12 @@ def app():
     bookTopic = bookData['max_col'].unique()
     topics = np.insert(bookTopic, 0, 80)
 
-
+    #st.markdown(f'<h2>Use filters by topic and author or scroll down to explore the books used to build the LDA-based recommendation system</h3>', unsafe_allow_html=True)
+    st.subheader('Use filters by topic and author or scroll down to explore the books used to build the LDA-based recommendation system')
     authorChoice = st.sidebar.selectbox('Filter by author:', authors, format_func=lambda x: 'Filter by author' if x == '' else x)
     topicChoice = st.sidebar.selectbox('Filter by topic:', topics, format_func=lambda x: 'Filter by topic' if x == '' else x)
 
-    st.markdown(
-        f'<h3 style="color: black;">Books written by {authorChoice}, with the topic {topicChoice}</h3>',
+    st.markdown(f'Books written by {authorChoice}, with the topic {topicChoice}',
         unsafe_allow_html=True)
 
     all_images = list(bookData['Image'])
@@ -66,5 +66,7 @@ def app():
                 idx = idx + 1
             else:
                 break
+    
+    st.subheader('Want to learn about the author? Go to Author Profiles!')
                 
        
