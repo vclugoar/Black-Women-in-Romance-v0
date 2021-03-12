@@ -11,7 +11,7 @@ bookData = pd.read_csv('books.csv')
 pickle_in2 = open('corpus.pkl', 'rb')
 corpus = pickle.load(pickle_in2)
 
-# define functions 
+# define some vars 
 bookList = bookData['Book']
 bookIndex = bookData['index']
 bookAuthor = bookData['Author']
@@ -19,13 +19,7 @@ bookImage = bookData['Image']
 bookDescription = bookData['Description']
 index2 = similarities.MatrixSimilarity(lda_mod25[corpus])
 
-
-
-#st.title("Here's your list:")
-col1 = st.beta_container()
-
 def app(userSelection): 
-    #listOfRelatedBooks = []
     corpus_to_compare = []
     names_of_related_books = []
     images_of_related_books = []
@@ -48,10 +42,25 @@ def app(userSelection):
     for book in book_name:
         if (bookIndex[book]== book_name).any():
             names_of_related_books.append(bookList[book])
-          #  names_of_related_books.append(' by ' + str(bookAuthor[book]) + '\n')
-            images_of_related_books.append(bookImage[book]) #caption=bookDescription[book]))
-    st.image(images_of_related_books, width = 175, caption=names_of_related_books) 
-   # st.text(bookList[book] + ' by ' + bookAuthor[book])
+            images_of_related_books.append(bookImage[book]) 
+
+    # create columns and add images to each one 
+    idx = 0
+    for _ in range(len(images_of_related_books)-1): 
+        cols = st.beta_columns(3) 
+        
+        if idx < len(images_of_related_books):
+            cols[0].image(images_of_related_books[idx], width=175, caption=names_of_related_books[idx])
+        idx+=1
+
+        if idx < len(images_of_related_books):
+           cols[1].image(images_of_related_books[idx], width=175, caption=names_of_related_books[idx])
+        idx+=1 
+        if idx < len(images_of_related_books): 
+            cols[2].image(images_of_related_books[idx], width=175, caption=names_of_related_books[idx])
+            idx = idx + 1
+        else:
+            break
          
 
 
