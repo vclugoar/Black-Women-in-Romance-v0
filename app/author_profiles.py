@@ -11,9 +11,10 @@ def app():
     bookData = pd.read_csv('books.csv')
     author_df = pd.read_csv('authors.csv')
     authors = author_df['Name']
+    st.title(f"Author Spotlight")
     authorChoice = st.selectbox('Use the filter to learn more about the authors whose books were used for this project:', authors, format_func=lambda x: 'Select an author' if x == '' else x) 
 
-    st.title(f"About {authorChoice}")
+    st.markdown(f'<h2>About {authorChoice}</h2>', unsafe_allow_html=True)
     with st.beta_container():
         col1, col2 = st.beta_columns((1, 1.5))
 
@@ -27,7 +28,7 @@ def app():
         col2.write(list(authorFiltered['Bio']))
 
     st.title(f"Books by {authorChoice}")
-    st.markdown(f"Books written by {authorChoice} that were used for this project.")
+    st.markdown(f"<h2>Books written by {authorChoice} that were used for this project.</h2>", unsafe_allow_html=True)
     
     with st.beta_container():
         colh, colh2 = st.beta_columns((6, 1))

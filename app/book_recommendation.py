@@ -23,7 +23,11 @@ def app(userSelection):
     corpus_to_compare = []
     names_of_related_books = []
     images_of_related_books = []
+    descriptions_of_related_books = []
+    authors_of_related_books = []
 
+    slider = st.slider("Select level of similarity based on topics", min_value=0.0, max_value=1.0, step=0.01, value=0.97)
+    
     for book in range(1, 339):
         if userSelection == bookList[book]:
             corpusA = corpus[bookIndex[book]]
@@ -32,7 +36,8 @@ def app(userSelection):
 
     sim = index2[vec_lda]
     sims = sorted(enumerate(sim), key=lambda item: -item[1])
-    DoublelistOfRelatedBooks = [list(group) for val, group in itertools.groupby(sims, lambda x: x[1] >= .97) if val]
+    # let users select how similar books 
+    DoublelistOfRelatedBooks = [list(group) for val, group in itertools.groupby(sims, lambda x: x[1] >= slider) if val]
     listOfRelatedBooks = DoublelistOfRelatedBooks[0]
 
     # split tuples into two lists with book name and similarity score 
@@ -43,6 +48,8 @@ def app(userSelection):
         if (bookIndex[book]== book_name).any():
             names_of_related_books.append(bookList[book])
             images_of_related_books.append(bookImage[book]) 
+            descriptions_of_related_books.append(bookDescription[book])
+            authors_of_related_books.append(bookAuthor[book])
 
     # create columns and add images to each one 
     idx = 0
@@ -62,5 +69,12 @@ def app(userSelection):
         else:
             break
          
+    with st.beta_container():
+        st.markdown('<h2>Book Descriptions</h2>', unsafe_allow_html=True)
+        col1, col2 = st.beta_columns((10, 1))
 
+ 
+        #col1.image(images_of_related_books, width=200)
+        for i in range(len(descriptions_of_related_books)):
+            col1.markdown(f'<b>{names_of_related_books[i]} by {authors_of_related_books[i]}:</b> {descriptions_of_related_books[i]}', unsafe_allow_html=True)   
 

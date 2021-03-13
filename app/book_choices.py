@@ -15,17 +15,20 @@ def app():
     authors = np.insert(bookAuthor, 0, 'All')
     bookTopic = bookData['max_col'].unique()
     topics = np.insert(bookTopic, 0, 80)
+    year_a = bookData['Year'].unique()
+    years = np.insert(year_a, 0, 0)
 
     #st.markdown(f'<h2>Use filters by topic and author or scroll down to explore the books used to build the LDA-based recommendation system</h3>', unsafe_allow_html=True)
     st.subheader('Use filters by topic and author or scroll down to explore the books used to build the LDA-based recommendation system')
     authorChoice = st.sidebar.selectbox('Filter by author:', authors, format_func=lambda x: 'Filter by author' if x == '' else x)
     topicChoice = st.sidebar.selectbox('Filter by topic:', topics, format_func=lambda x: 'Filter by topic' if x == '' else x)
+    yearChoice = st.sidebar.selectbox('Filter by year:', years, format_func=lambda x: 'Filter by topic' if x == '' else x)
 
     st.markdown(f'Books written by {authorChoice}, with the topic {topicChoice}',
         unsafe_allow_html=True)
 
     all_images = list(bookData['Image'])
-    if (authorChoice == 'All') & (topicChoice == 80):
+    if (authorChoice == 'All') & (topicChoice == 80) & (yearChoice == 0):
         idx = 0 
         for _ in range(len(all_images)-1): 
             cols = st.beta_columns(4) 
@@ -41,7 +44,7 @@ def app():
             else:
                 break
     else: 
-        bookFiltered = bookData[(bookData['Author'] == authorChoice) | (bookData['max_col'] == topicChoice)]
+        bookFiltered = bookData[(bookData['Author'] == authorChoice) | (bookData['max_col'] == topicChoice) | (bookData['Year'] == yearChoice)]
         filteredImages = list(bookFiltered['Image'])
         filteredTitles = list(bookFiltered['Book'])
         caption = list(filteredTitles)

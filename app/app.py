@@ -1,14 +1,17 @@
 import book_recommendation
 import book_choices
 import author_profiles
+import build 
 import streamlit as st 
 from annotated_text import annotated_text, annotation
 
 
 PAGES = {   
-    "Book Recommendation": book_recommendation,
-    "Book Choices": book_choices,
-    "Author Profiles": author_profiles
+    "Explore books": book_choices,
+    "Find books with similar topics": book_recommendation,
+    "Author spotlight": author_profiles,
+    "Methods": build 
+    
     
 }
 # https://i.ibb.co/kSpRrsL/Copy-of-Storytelling-with-data.png
@@ -27,7 +30,7 @@ st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 page = PAGES[selection]
 
-if selection == 'Book Recommendation':
+if selection == 'Find books with similar topics':
     st.subheader(f'LDA-Based Book Recommendation for Romance Novels Written by Black Women')
     st.text('Need suggestions? Search through Book Choices and Author Profiles for inspiration!')
     userSelection = st.text_input("Enter a book name:", 'Make a Scene')
