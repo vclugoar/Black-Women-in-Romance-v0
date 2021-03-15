@@ -1,44 +1,46 @@
 import book_recommendation
 import book_choices
 import author_profiles
-import build 
+import about 
+import intake_form
 import streamlit as st 
-from annotated_text import annotated_text, annotation
+import pandas as pd 
 
+# # header image / banner
+# st.image('https://i.ibb.co/PzJPXfW/Copy-of-Copy-of-Storytelling-with-data.png', use_column_width=True)
+st.set_page_config(page_title='Black Women in Romance', layout='centered',)
 
-PAGES = {   
-    "Explore books": book_choices,
-    "Find books with similar topics": book_recommendation,
-    "Author spotlight": author_profiles,
-    "Methods": build 
-    
-    
+# get the pages on nav
+PAGES = { 
+    "About": about,
+    "Book Catalog": book_choices,
+    "Book Recommendations": book_recommendation,  
+    "Author Spotlight": author_profiles,
+    "Add Books or Authors": intake_form
 }
-# https://i.ibb.co/kSpRrsL/Copy-of-Storytelling-with-data.png
-#https://i.ibb.co/fNL0YN0/Copy-of-Storytelling-with-data.jpg'
-#https://i.ibb.co/7pzSWkq/Untitled-design-High-Quality.jpg
-st.image('https://i.ibb.co/PzJPXfW/Copy-of-Copy-of-Storytelling-with-data.png', use_column_width=True)
-    #'g', use_column_width=True)
-#
-#''
-# st.markdown(
-#         f'<h1 style="color: FireBrick;">Black Women in Romance Genre</h1>',
-#         unsafe_allow_html=True
-# )
 
+# get data
+bookData = pd.read_csv('books.csv')
+bookList = bookData['Book'].unique()
+
+# user interaction 
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 page = PAGES[selection]
 
-if selection == 'Find books with similar topics':
-    st.subheader(f'LDA-Based Book Recommendation for Romance Novels Written by Black Women')
-    st.text('Need suggestions? Search through Book Choices and Author Profiles for inspiration!')
-    userSelection = st.text_input("Enter a book name:", 'Make a Scene')
-
-    st.markdown(
-        f'<h3 style="color: black; ">Books with similar topics to {userSelection}</h3>',
-        unsafe_allow_html=True)
-    page.app(userSelection)
-#elif (selection == 'Book Choices' | selection == 'Author Profiles'):
-else:
+# navigation and user interaction 
+if selection == 'About':
+    st.image('https://i.ibb.co/cFfvYJs/1.png', use_column_width=True)
+    page.app()
+elif selection == 'Book Catalog':
+    st.image('https://i.ibb.co/527LgRd/2.png', use_column_width=True)
+    page.app()
+elif selection == 'Book Recommendations':
+    st.image('https://i.ibb.co/G55FZs0/3.png', use_column_width=True)
+    page.app()
+elif selection == 'Author Spotlight':
+    st.image('https://i.ibb.co/5618csr/4.png', use_column_width=True)
+    page.app()
+elif selection == 'Add Books or Authors':
+    st.image('https://i.ibb.co/yS5g3C6/Page-banners-1.png')
     page.app()
