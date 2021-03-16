@@ -85,18 +85,18 @@ def app():
                     col2.text("") 
     else: 
         idx = 0
-        for _ in range(len(images_of_related_books)-1): 
+        for _ in range(len(images_of_related_books)): 
             cols = st.beta_columns(3) 
             
             if idx < len(images_of_related_books):
-                cols[0].image(images_of_related_books[idx], width=175, caption=names_of_related_books[idx])
+                cols[0].image(images_of_related_books[idx], width=175, caption=f'{names_of_related_books[idx]} by {authors_of_related_books[idx]}')
             idx+=1
 
             if idx < len(images_of_related_books):
-                cols[1].image(images_of_related_books[idx], width=175, caption=names_of_related_books[idx])
+                cols[1].image(images_of_related_books[idx], width=175, caption=f'{names_of_related_books[idx]} by {authors_of_related_books[idx]}')
             idx+=1 
             if idx < len(images_of_related_books): 
-                cols[2].image(images_of_related_books[idx], width=175, caption=names_of_related_books[idx])
+                cols[2].image(images_of_related_books[idx], width=175, caption=f'{names_of_related_books[idx]} by {authors_of_related_books[idx]}')
                 idx = idx + 1
             else:
                 break
