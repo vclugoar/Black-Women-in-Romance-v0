@@ -9,7 +9,7 @@ from io import BytesIO
 import numpy as np 
 
 def app(): 
-    bookData = pd.read_csv('books.csv')
+    bookData = pd.read_csv('books_copy.csv')
     bookList = bookData['Book']
     bookAuthor = bookData['Author'].unique()
     bookDescription = list(bookData['Description'])
@@ -55,7 +55,7 @@ def app():
                     col2.text("")
         else: 
             idx = 0 
-            for _ in range(len(filteredImages)-1): 
+            for _ in range(len(filteredImages)): 
                 cols = st.beta_columns(4) 
                 
                 if idx < len(filteredImages): 
