@@ -2,7 +2,7 @@ import pickle
 import streamlit as st 
 import itertools 
 import pandas as pd 
-from gensim import similarities
+import gensim 
 
 # loading the trained model 
 pickle_in = open('lda.pkl', 'rb')
@@ -19,7 +19,7 @@ bookAuthor = bookData['Author']
 bookLink = bookData['Buy']
 bookImage = bookData['Image']
 bookDescription = bookData['Description']
-index2 = similarities.MatrixSimilarity(lda_mod25[corpus])
+index2 = gensim.similarities.MatrixSimilarity(lda_mod25[corpus])
 
 
 def main(): 
