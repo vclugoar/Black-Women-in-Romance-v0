@@ -7,6 +7,7 @@ from gensim import similarities
 # loading the trained model 
 pickle_in = open('lda.pkl', 'rb')
 lda_mod25 = pickle.load(pickle_in)
+#bookData = pd.read_csv('books_copy.csv')
 bookData = pd.read_csv('books.csv')
 pickle_in2 = open('corpus.pkl', 'rb')
 corpus = pickle.load(pickle_in2)
@@ -21,10 +22,11 @@ bookDescription = bookData['Description']
 index2 = similarities.MatrixSimilarity(lda_mod25[corpus])
 
 
-def app(): 
+def main(): 
     
     # title 
-    st.markdown('Need book suggestions? Search through the Book Catalog and Author Spotlight for inspiration!')
+    st.markdown(f'<h2> Enter a book name to get recommendations based on topic.</h2>', unsafe_allow_html=True)
+    st.markdown('Need suggestions? Search through the Book Catalog and Author Spotlight for inspiration!')
 
     # initialize lists
     corpus_to_compare = []
@@ -37,7 +39,8 @@ def app():
     # user input
     box1, box2 = st.beta_columns(2)
     userSelection = box1.selectbox("Enter a book name:", bookList, index=42)
-    slider = box2.slider("Select level of similarity based on topics", min_value=0.90, max_value=0.99, step=0.01, value=0.97)
+    slider = box2.slider("Select level of similarity based on topics", min_value=0.80, max_value=0.99, step=0.01, value=0.90)
+    
     descriptionBox = st.checkbox("Show book descriptions", value=False)
 
     st.markdown(

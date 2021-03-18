@@ -1,11 +1,8 @@
 import streamlit as st 
-import itertools 
 import pandas as pd 
 import numpy as np 
 
-#st.beta_set_page_config(layout="wide")
-
-def app():
+def main():
 
 # Use the full page instead of a narrow central column
     bookData = pd.read_csv('books.csv')
@@ -43,7 +40,6 @@ def app():
             col1.text(' ')
             col1.image(list(authorFiltered['Image']), use_column_width=True)
             col1.text(' ')
-            col2.text(' ')
             col2.markdown(list(authorFiltered['Bio'])[0])
             for i in range(len(authorFiltered)):
                 col2.markdown(f'To learn more about {authors[i]}, visit their [website]({authorCaption[i]})', unsafe_allow_html=True)

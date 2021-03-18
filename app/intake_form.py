@@ -1,19 +1,12 @@
 import streamlit as st 
-import itertools 
 import pandas as pd 
 import numpy as np 
-import altair as alt
-import matplotlib.pyplot as plt
-import time
-import seaborn as sns 
-from streamlit_embedcode import pastebin_snippet
 
-
-def app():
+def main():
 
     # brief about 
     with st.beta_container():
-        st.image('https://i.ibb.co/RH2SWMk/Hello-This-tool-started-as-a-capstone-project-for-the-MS-in-Data-Analysis-and-Visualization-program.png', use_column_width=True)
+        st.image('https://i.ibb.co/NmhK4yY/Hello-This-tool-started-as-a-capstone-project-for-the-MS-in-Data-Analysis-and-Visualization-program.png', use_column_width=True)
     
     # form 
     with st.beta_container():

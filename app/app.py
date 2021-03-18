@@ -6,8 +6,6 @@ import intake_form
 import streamlit as st 
 import pandas as pd 
 
-# # header image / banner
-# st.image('https://i.ibb.co/PzJPXfW/Copy-of-Copy-of-Storytelling-with-data.png', use_column_width=True)
 st.set_page_config(page_title='Black Women in Romance', layout='centered',)
 
 # get the pages on nav
@@ -31,16 +29,16 @@ page = PAGES[selection]
 # navigation and user interaction 
 if selection == 'About':
     st.image('https://i.ibb.co/cFfvYJs/1.png', use_column_width=True)
-    page.app()
+    page.main()
 elif selection == 'Book Catalog':
     st.image('https://i.ibb.co/527LgRd/2.png', use_column_width=True)
-    page.app()
+    page.main()
 elif selection == 'Book Recommendations':
     st.image('https://i.ibb.co/G55FZs0/3.png', use_column_width=True)
-    page.app()
+    page.main()
 elif selection == 'Author Spotlight':
     st.image('https://i.ibb.co/5618csr/4.png', use_column_width=True)
-    page.app()
+    page.main()
 elif selection == 'Add Books or Authors':
     st.image('https://i.ibb.co/yS5g3C6/Page-banners-1.png')
-    page.app()
+    page.main()
