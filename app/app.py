@@ -1,4 +1,4 @@
-#import book_recommendation
+import book_recommendation
 import book_choices
 import author_profiles
 import about 
@@ -33,9 +33,9 @@ if selection == 'About':
 elif selection == 'Book Catalog':
     st.image('https://i.ibb.co/527LgRd/2.png', use_column_width=True)
     page.main()
-# elif selection == 'Book Recommendations':
-#     st.image('https://i.ibb.co/G55FZs0/3.png', use_column_width=True)
-#     page.main()
+elif selection == 'Book Recommendations':
+    st.image('https://i.ibb.co/G55FZs0/3.png', use_column_width=True)
+    page.main()
 elif selection == 'Author Spotlight':
     st.image('https://i.ibb.co/5618csr/4.png', use_column_width=True)
     page.main()
