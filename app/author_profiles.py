@@ -22,7 +22,7 @@ def main():
 
     if authorChoice =='All': 
         idx2 = 0
-        for _ in range(len(authorImages)-1):
+        for _ in range(len(authorBios)-1):
                 authorCaption = list(author_df['Website'])
                 #col1.image(authorImages[idx2], width=200, caption=authors[idx2])
                 st.markdown(f'<h2>About {authorNames[idx2+1]}</h2>', unsafe_allow_html=True)
