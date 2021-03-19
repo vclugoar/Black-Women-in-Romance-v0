@@ -36,7 +36,7 @@ def main():
      
 
     else:
-        st.markdown(f'<h2>About {authors[0]}</h2>', unsafe_allow_html=True)
+        st.markdown(f'<h2>About {authorChoice]}</h2>', unsafe_allow_html=True)
         filteredBooks = bookData[bookData['Author'] == authorChoice]
         filteredImages = list(filteredBooks['Image'])
         bookCaption = list(filteredBooks['Book'])
