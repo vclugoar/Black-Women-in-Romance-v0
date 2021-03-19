@@ -5,7 +5,7 @@ import numpy as np
 
 def app():
 
-    bookData = pd.read_csv('books.csv')
+    bookData = pd.read_csv('app/books.csv')
   #  bookDescription = list(bookData['Description'])
     bookImage = list(bookData['Image'])
     books = bookData['Book'] 
