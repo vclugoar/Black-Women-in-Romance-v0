@@ -13,9 +13,11 @@ def main():
 
     # user inputs 
     authorChoice = st.selectbox('Use the filter to learn more about the authors whose books were used for this project:', authorNames, format_func=lambda x: 'Select an author' if x == '' else x) 
-    st.markdown(f'<h2>Featured Authors</h2>', unsafe_allow_html=True)
+    
 
     if authorChoice =='All': 
+        st.markdown(f'<h2>Featured Authors</h2>', unsafe_allow_html=True)
+
         i = 0
         for _ in range(len(authors)-1):
             col = st.beta_columns((1, 1, 1))
@@ -34,6 +36,7 @@ def main():
      
 
     else:
+        st.markdown(f'<h2>About {authors[0]}</h2>', unsafe_allow_html=True)
         filteredBooks = bookData[bookData['Author'] == authorChoice]
         filteredImages = list(filteredBooks['Image'])
         bookCaption = list(filteredBooks['Book'])
@@ -41,6 +44,9 @@ def main():
         authors = authorFiltered['Name'].unique()
         authorCaption = list(authorFiltered['Website'])
         st.markdown(list(authorFiltered['Bio'])[0])
+
+        
+
         for i in range(len(authorFiltered)):
             st.markdown(f'To learn more about {authors[i]}, visit their [website]({authorCaption[i]})', unsafe_allow_html=True)
 
@@ -66,4 +72,3 @@ def main():
             else:
                 break
 
-   
