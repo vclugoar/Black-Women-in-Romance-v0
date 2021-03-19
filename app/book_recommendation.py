@@ -8,8 +8,8 @@ import gensim
 pickle_in = open('app/lda.pkl', 'rb')
 lda_mod25 = pickle.load(pickle_in)
 #bookData = pd.read_csv('books_copy.csv')
-bookData = pd.read_csv('books.csv')
-pickle_in2 = open('corpus.pkl', 'rb')
+bookData = pd.read_csv('app/books.csv')
+pickle_in2 = open('app/corpus.pkl', 'rb')
 corpus = pickle.load(pickle_in2)
 
     # define some vars 
