@@ -9,30 +9,31 @@ def main():
     author_df = pd.read_csv('app/Data/authors.csv')
     authors = author_df['Name'].unique()
     authorNames = np.insert(authors, 0, "All")
-    #authorImages = author_df['Image']
-    authorBios = list(author_df['Bio'])
-    authorSites = author_df['Website'].unique()
-    authorWebsites = np.insert(authorSites, 0, 'All')
-    st.title(f"Learn more about the authors")
+    st.title(f"About the Authors")
 
     # user inputs 
-   # showBooks = st.checkbox('Show author books referenced')
     authorChoice = st.selectbox('Use the filter to learn more about the authors whose books were used for this project:', authorNames, format_func=lambda x: 'Select an author' if x == '' else x) 
-    st.markdown(f'<h2>About {authorChoice}</h2>', unsafe_allow_html=True)
+    st.markdown(f'<h2>Featured Authors</h2>', unsafe_allow_html=True)
 
     if authorChoice =='All': 
-        idx2 = 0
-        for _ in range(len(authorBios)-1):
-                authorCaption = list(author_df['Website'])
-                #col1.image(authorImages[idx2], width=200, caption=authors[idx2])
-                st.markdown(f'<h2>About {authorNames[idx2+1]}</h2>', unsafe_allow_html=True)
-                st.markdown(authorBios[idx2])
-                st.markdown(f'To learn more visit their [website]({authorCaption[idx2]}).', unsafe_allow_html=True)
-                idx2 = idx2+1 
-                st.text("")
+        i = 0
+        for _ in range(len(authors)-1):
+            col = st.beta_columns((1, 1, 1))
+
+            if i < len(authors): 
+                col[0].markdown(f'{authors[i]}')
+            i+=1
+            if i < len(authors): 
+                col[1].markdown(f'{authors[i]}')
+            i+=1
+            if i < len(authors): 
+                col[2].markdown(f'{authors[i]}')
+                i = i +1
+            else:
+                break
+     
 
     else:
-        #if (showBooks == True) & (authorChoice != 'All'): 
         filteredBooks = bookData[bookData['Author'] == authorChoice]
         filteredImages = list(filteredBooks['Image'])
         bookCaption = list(filteredBooks['Book'])
