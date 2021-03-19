@@ -5,7 +5,7 @@ import numpy as np
 def main():
 
 # Use the full page instead of a narrow central column
-   # bookData = pd.read_csv('app/Data/books.csv')
+    bookData = pd.read_csv('app/Data/books.csv')
     author_df = pd.read_csv('app/Data/authors.csv')
     authors = author_df['Name'].unique()
     authorNames = np.insert(authors, 0, "All")
@@ -33,7 +33,9 @@ def main():
 
     else:
         #if (showBooks == True) & (authorChoice != 'All'): 
-      #  filteredImages = bookData[bookData['Author'] == authorChoice]
+        filteredBooks = bookData[bookData['Author'] == authorChoice]
+        filteredImages = list(filteredBooks['Image'])
+        bookCaption = list(filteredBooks['Book'])
         authorFiltered = author_df[author_df['Name'] == authorChoice]
         authors = authorFiltered['Name'].unique()
         authorCaption = list(authorFiltered['Website'])
@@ -41,26 +43,26 @@ def main():
         for i in range(len(authorFiltered)):
             st.markdown(f'To learn more about {authors[i]}, visit their [website]({authorCaption[i]})', unsafe_allow_html=True)
 
-            # idx = 0
-            # for _ in range(len(filteredImages)+1): 
-            #     cols = st.beta_columns(4) 
+        st.markdown(f'<h2>Books by {authorChoice} referenced in this project</h2>', unsafe_allow_html=True)
+        idx = 0
+        for _ in range(len(filteredImages)): 
+            cols = st.beta_columns(4) 
+            if idx < len(filteredImages): 
+                cols[0].image(filteredImages[idx], width=150, caption = bookCaption[idx] )
                     
-            #     if idx < len(filteredImages): 
-            #         cols[0].image(filteredImages[idx], width=150)
+            idx+=1
                     
-            #     idx+=1
-                    
-            #     if idx < len(filteredImages):
-            #         cols[1].image(filteredImages[idx], width=150)
-            #     idx+=1
+            if idx < len(filteredImages):
+                cols[1].image(filteredImages[idx], width=150, caption = bookCaption[idx] )
+            idx+=1
 
-            #     if idx < len(filteredImages):
-            #         cols[2].image(filteredImages[idx], width=150)
-            #     idx+=1 
-            #     if idx < len(filteredImages): 
-            #         cols[3].image(filteredImages[idx], width=150)
-            #         idx = idx + 1
-            #     else:
-            #        break
+            if idx < len(filteredImages):
+                cols[2].image(filteredImages[idx], width=150, caption = bookCaption[idx] )
+            idx+=1 
+            if idx < len(filteredImages): 
+                cols[3].image(filteredImages[idx], width=150, caption = bookCaption[idx] )
+                idx = idx + 1
+            else:
+                break
 
-  
+   
