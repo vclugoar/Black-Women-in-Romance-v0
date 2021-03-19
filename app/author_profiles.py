@@ -9,7 +9,7 @@ def main():
     author_df = pd.read_csv('app/Data/authors.csv')
     authors = author_df['Name'].unique()
     authorNames = np.insert(authors, 0, "All")
-    authorImages = author_df['Image']
+    #authorImages = author_df['Image']
     authorBios = list(author_df['Bio'])
     authorSites = author_df['Website'].unique()
     authorWebsites = np.insert(authorSites, 0, 'All')
