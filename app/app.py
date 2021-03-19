@@ -18,7 +18,7 @@ PAGES = {
 }
 
 # get data
-bookData = pd.read_csv('app/books.csv')
+bookData = pd.read_csv('app/Data/books.csv')
 bookList = bookData['Book'].unique()
 
 # user interaction 
