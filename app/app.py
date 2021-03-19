@@ -50,3 +50,5 @@ elif selection == 'Author Spotlight':
 elif selection == 'Add Books or Authors':
     st.image('https://i.ibb.co/yS5g3C6/Page-banners-1.png')
     page.main()
+
+st.sidebar.markdown('<h5>Created by Vianny Lugo-Aracena</h5>', unsafe_allow_html=True)
