@@ -12,7 +12,7 @@ st.set_page_config(page_title='Black Women in Romance', layout='centered',)
 PAGES = { 
     "About": about,
     "Book Catalog": book_choices,
-   # "Book Recommendations": book_recommendation,  
+    "Book Recommendations": book_recommendation,  
     "Author Spotlight": author_profiles,
     "Add Books or Authors": intake_form
 }
