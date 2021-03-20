@@ -32,20 +32,22 @@ def main():
         emailName = st.text_input('Enter name')
         emailAddress = st.text_input('Enter a valid email address')
 
-        # submit button 
+         # submit button 
         clickSubmit = st.button('Submit')
-
-        if clickSubmit == True:
-            st.markdown('<h3>Thank you for your feedback!</h3>', unsafe_allow_html=True)
-            # save into dictionary and then dataframe 
-            d = {'Book Name(s)': [newBookName], 
+        d = {'Book Name(s)': [newBookName], 
                 'Book Author(s)': [newBookAuthor],
                 'Feedback': [newFeedback],
                 'Name': [emailName],
                 'Email': [emailAddress]}
-            df = pd.DataFrame(data=d)
+        df = pd.DataFrame(data=d)
+
+        if clickSubmit == True:
+            st.markdown('<h3>Thank you for your feedback!</h3>', unsafe_allow_html=True)
+            # save into dictionary and then dataframe 
+            
             st.markdown('Submitted responses:')
             st.write(df)
+            open('df.csv', 'w').write(df.to_csv())
         
         else:
             st.markdown("Click submit to save form responses.")
