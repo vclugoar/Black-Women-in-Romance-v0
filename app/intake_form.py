@@ -6,7 +6,15 @@ def main():
 
     # brief about 
     with st.beta_container():
-        st.image('https://i.ibb.co/NmhK4yY/Hello-This-tool-started-as-a-capstone-project-for-the-MS-in-Data-Analysis-and-Visualization-program.png', use_column_width=True)
+        st.markdown("""
+        The Black Women in Romance project started as a capstone for the MS in Data Analysis and Visualization program at the CUNY graduate Center for the Spring of 2021.
+        
+        The lists of authors and books are in no way exhaustive, and I will expand the catalog to include more books when funds allow (buying books is expensive!).
+
+        If you have a book or author in mind not currently part of the project, please enter the author's names or book titles below to include in future iterations of the project.
+
+    """)
+        #st.image('https://i.ibb.co/NmhK4yY/Hello-This-tool-started-as-a-capstone-project-for-the-MS-in-Data-Analysis-and-Visualization-program.png', use_column_width=True)
     
     # form 
     with st.beta_container():

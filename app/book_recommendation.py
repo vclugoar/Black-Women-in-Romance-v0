@@ -5,11 +5,11 @@ import pandas as pd
 import gensim 
 
 # loading the trained model 
-pickle_in = open('app/Data/lda.pkl', 'rb')
-lda_mod25 = pickle.load(pickle_in)
+pickle_in = open('Data/lda.pkl', 'rb')
+lda_mod20 = pickle.load(pickle_in)
 #bookData = pd.read_csv('books_copy.csv')
-bookData = pd.read_csv('app/Data/books.csv')
-pickle_in2 = open('app/Data/corpus.pkl', 'rb')
+bookData = pd.read_csv('Data/books.csv')
+pickle_in2 = open('Data/corpus.pkl', 'rb')
 corpus = pickle.load(pickle_in2)
 
     # define some vars 
@@ -19,7 +19,7 @@ bookAuthor = bookData['Author']
 bookLink = bookData['Buy']
 bookImage = bookData['Image']
 bookDescription = bookData['Description']
-index2 = gensim.similarities.MatrixSimilarity(lda_mod25[corpus])
+index2 = gensim.similarities.MatrixSimilarity(lda_mod20[corpus])
 
 
 def main(): 
@@ -39,7 +39,7 @@ def main():
     # user input
     box1, box2 = st.beta_columns(2)
     userSelection = box1.selectbox("Enter a book name:", bookList, index=42)
-    slider = box2.slider("Select level of similarity based on topics", min_value=0.80, max_value=0.99, step=0.01, value=0.90)
+    slider = box2.slider("Select level of similarity based on topics", min_value=0.80, max_value=0.99, step=0.01, value=0.93)
     
     descriptionBox = st.checkbox("Show book descriptions", value=False)
 
@@ -50,7 +50,7 @@ def main():
     for book in range(len(bookList)):
         if userSelection == bookList[book]:
             corpusA = corpus[bookIndex[book]]
-            vec_lda = lda_mod25[corpusA]
+            vec_lda = lda_mod20[corpusA]
             corpus_to_compare.append(vec_lda)
 
     sim = index2[vec_lda]

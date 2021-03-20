@@ -4,7 +4,7 @@ import numpy as np
 
 def main(): 
     #bookData = pd.read_csv('books_copy.csv')
-    bookData = pd.read_csv('app/Data/books.csv')
+    bookData = pd.read_csv('Data/books.csv')
     bookAuthor = bookData['Author'].unique()
     authors = np.insert(bookAuthor, 0, 'All')
     bookTopic = bookData['max_col'].unique()
