@@ -5,11 +5,11 @@ import pandas as pd
 import gensim 
 
 # loading the trained model 
-pickle_in = open('Data/lda.pkl', 'rb')
+pickle_in = open('app/Data/lda.pkl', 'rb')
 lda_mod20 = pickle.load(pickle_in)
 #bookData = pd.read_csv('books_copy.csv')
 bookData = pd.read_csv('Data/books.csv')
-pickle_in2 = open('Data/corpus.pkl', 'rb')
+pickle_in2 = open('app/Data/corpus.pkl', 'rb')
 corpus = pickle.load(pickle_in2)
 
     # define some vars 
