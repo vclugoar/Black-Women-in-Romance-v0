@@ -29,7 +29,7 @@ def main():
     if (authorChoice == 'All') & (topicChoice == 80) & (yearChoice == 0):
        st.image('https://i.ibb.co/X3Dpz54/Use-the-filters-above-to-see-books-2.png', use_column_width=True)
     else: 
-        bookFiltered = bookData[(bookData['Author'] == authorChoice) | (bookData['max_col'] == topicChoice) | (bookData['Year'] == yearChoice)]
+        bookFiltered = bookData[((bookData['Author'] == authorChoice)) | ((bookData['max_col'] == topicChoice) | (bookData['Year'] == yearChoice))]
         filteredImages = list(bookFiltered['Image'])
         filteredTitles = list(bookFiltered['Book'])
         filteredDescription = list(bookFiltered['Description'])
