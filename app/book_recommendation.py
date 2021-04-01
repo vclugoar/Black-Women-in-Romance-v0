@@ -6,7 +6,7 @@ import gensim
 
 # loading the trained model 
 pickle_in = open('app/Data/lda.pkl', 'rb')
-lda_mod20 = pickle.load(pickle_in)
+#lda_mod2 = pickle.load(pickle_in)
 #bookData = pd.read_csv('books_copy.csv')
 bookData = pd.read_csv('app/Data/books.csv')
 pickle_in2 = open('app/Data/corpus.pkl', 'rb')
