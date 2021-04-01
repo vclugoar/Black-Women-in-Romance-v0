@@ -50,7 +50,7 @@ def main():
             st.markdown('<h3>Thank you for your feedback!</h3>', unsafe_allow_html=True)
             
             df = df.append(d, ignore_index = True)
-            open('df.csv', 'w').write(df.to_csv())
+            open('https://raw.githubusercontent.com/vclugoar/capstone/main/app/df.csv', 'w').write(df.to_csv())
         
         else:
             st.markdown("Click submit to save form responses.")
