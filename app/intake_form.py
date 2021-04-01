@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd 
 import numpy as np 
 
+
+
 def main():
 
     # brief about 
@@ -34,23 +36,24 @@ def main():
 
          # submit button 
         clickSubmit = st.button('Submit')
-        d = {'Book Name(s)': [newBookName], 
+
+        df = pd.read_csv('df.csv')
+
+        if clickSubmit == True:
+
+            d = {'Book Name(s)': [newBookName], 
                 'Book Author(s)': [newBookAuthor],
                 'Feedback': [newFeedback],
                 'Name': [emailName],
                 'Email': [emailAddress]}
-        df = pd.DataFrame(data=d)
 
-        if clickSubmit == True:
             st.markdown('<h3>Thank you for your feedback!</h3>', unsafe_allow_html=True)
-            # save into dictionary and then dataframe 
             
-            st.markdown('Submitted responses:')
-            st.write(df)
+            df = df.append(d, ignore_index = True)
             open('df.csv', 'w').write(df.to_csv())
         
         else:
             st.markdown("Click submit to save form responses.")
 
-#app()
+# main()
 
