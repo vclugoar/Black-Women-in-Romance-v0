@@ -37,7 +37,7 @@ def main():
          # submit button 
         clickSubmit = st.button('Submit')
 
-        df = pd.read_csv('df.csv')
+        df = pd.read_csv('https://raw.githubusercontent.com/vclugoar/capstone/main/app/df.csv')
 
         if clickSubmit == True:
 
