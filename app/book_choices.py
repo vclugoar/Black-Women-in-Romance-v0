@@ -2,17 +2,18 @@ import streamlit as st
 import pandas as pd 
 import numpy as np 
 
+
 def main(): 
     #bookData = pd.read_csv('books_copy.csv')
-    bookData = pd.read_csv('app/Data/books.csv')
-    bookAuthor = bookData['Author'].unique()
+    bookData = pd.read_csv('Data/books2.csv')
+    topicData = pd.read_csv('Data/melted.csv')
+    bookAuthor = topicData['Author'].unique()
     authors = np.insert(bookAuthor, 0, 'All')
-    bookTopic = bookData['max_col'].unique()
-    topics = np.insert(bookTopic, 0, 80)
-    year_a = bookData['Year'].unique()
+    topics_a = topicData['Topics'].unique()
+    year_a = topicData['Year'].unique()
     years = np.insert(year_a, 0, 0)
+    topics = np.insert(topics_a, 0, 'All')
     years.sort()
-    
 
     #st.markdown(f'<h2>Use filters by topic and author or scroll down to explore the books used to build the LDA-based recommendation system</h3>', unsafe_allow_html=True)
     st.subheader('Use filters by topic and author or scroll down to explore the books used to build the LDA-based recommendation system')
@@ -26,15 +27,18 @@ def main():
     st.markdown(f'Books written by {authorChoice}, with the topic {topicChoice}',
         unsafe_allow_html=True)
 
-    if (authorChoice == 'All') & (topicChoice == 80) & (yearChoice == 0):
+    if (authorChoice == 'All') & (yearChoice == 0) & (topicChoice == 'All'):
        st.image('https://i.ibb.co/X3Dpz54/Use-the-filters-above-to-see-books-2.png', use_column_width=True)
     else: 
-        bookFiltered = bookData[((bookData['Author'] == authorChoice)) | ((bookData['max_col'] == topicChoice) | (bookData['Year'] == yearChoice))]
-        filteredImages = list(bookFiltered['Image'])
-        filteredTitles = list(bookFiltered['Book'])
-        filteredDescription = list(bookFiltered['Description'])
-        filteredLink = list(bookFiltered['Buy'])
-        filteredAuthors = list(bookFiltered['Author'])
+       # bookFiltered = bookData[((bookData['Author'] == authorChoice)) | (bookData['Year'] == yearChoice)]
+        
+        topicFiltered = topicData[ (topicData['Topics'] == topicChoice) | (topicData['Author'] == authorChoice) | (topicData['Year'] == yearChoice)]
+
+        filteredImages = list(topicFiltered['Image'].unique())
+        filteredTitles = list(topicFiltered['Book'].unique())
+        filteredDescription = list(topicFiltered['Description'].unique())
+        filteredLink = list(topicFiltered['Buy'].unique())
+        filteredAuthors = list(topicFiltered['Author'])
         caption = list(filteredTitles)
 
         if descriptionChoiceC == True: 
@@ -71,4 +75,3 @@ def main():
                 else:
                     break
                 
-
