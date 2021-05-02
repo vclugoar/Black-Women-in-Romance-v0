@@ -7,7 +7,7 @@ import intake_form
 import streamlit as st 
 import pandas as pd 
 
-st.set_page_config(page_title='Black Women in Romance', layout='centered')
+# st.set_page_config(page_title='Black Women in Romance', layout='centered')
 
 hide_menu_style = """
         <style>
@@ -28,7 +28,7 @@ PAGES = {
 }
 
 # get data
-bookData = pd.read_csv('app/Data/books.csv')
+bookData = pd.read_csv('./Data/books.csv')
 bookList = bookData['Book'].unique()
 
 # user interaction 

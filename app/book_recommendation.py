@@ -3,13 +3,14 @@ import streamlit as st
 import itertools 
 import pandas as pd 
 import gensim 
+from random import randrange
 
 # loading the trained model 
-pickle_in = open('app/Data/lda.pkl', 'rb')
-#lda_mod2 = pickle.load(pickle_in)
+pickle_in = open('./Data/lda.pkl', 'rb')
+lda_mod30 = pickle.load(pickle_in)
 #bookData = pd.read_csv('books_copy.csv')
-bookData = pd.read_csv('app/Data/books.csv')
-pickle_in2 = open('app/Data/corpus.pkl', 'rb')
+bookData = pd.read_csv('./Data/books.csv')
+pickle_in2 = open('./Data/corpus.pkl', 'rb')
 corpus = pickle.load(pickle_in2)
 
     # define some vars 
@@ -19,7 +20,7 @@ bookAuthor = bookData['Author']
 bookLink = bookData['Buy']
 bookImage = bookData['Image']
 bookDescription = bookData['Description']
-index2 = gensim.similarities.MatrixSimilarity(lda_mod20[corpus])
+index2 = gensim.similarities.MatrixSimilarity(lda_mod30[corpus])
 
 
 def main(): 
@@ -38,8 +39,8 @@ def main():
 
     # user input
     box1, box2 = st.beta_columns(2)
-    userSelection = box1.selectbox("Enter a book name:", bookList, index=42)
-    slider = box2.slider("Select level of similarity based on topics", min_value=0.80, max_value=0.99, step=0.01, value=0.93)
+    userSelection = box1.selectbox("Enter a book name:", bookList, index= randrange(0, 392))
+    slider = box2.slider("Select level of similarity based on topics", min_value=0.70, max_value=0.99, step=0.01, value=0.85)
     
     descriptionBox = st.checkbox("Show book descriptions", value=False)
 
@@ -50,7 +51,7 @@ def main():
     for book in range(len(bookList)):
         if userSelection == bookList[book]:
             corpusA = corpus[bookIndex[book]]
-            vec_lda = lda_mod20[corpusA]
+            vec_lda = lda_mod30[corpusA]
             corpus_to_compare.append(vec_lda)
 
     sim = index2[vec_lda]
@@ -75,7 +76,7 @@ def main():
     # create columns and add images to each one 
     if descriptionBox == True:
             idx2 = 0  
-            for _ in range(len(images_of_related_books)):
+            for _ in range(len(images_of_related_books)-1):
                 with st.beta_container():
                     col1, col2 = st.beta_columns((1, 2.5))
                     col1.image(images_of_related_books[idx2], width=170)
@@ -88,17 +89,17 @@ def main():
                     col2.text("") 
     else: 
         idx = 0
-        for _ in range(len(images_of_related_books)): 
+        for _ in range(len(images_of_related_books)-1): 
             cols = st.beta_columns(3) 
             
-            if idx < len(images_of_related_books):
+            if idx < len(images_of_related_books)-1:
                 cols[0].image(images_of_related_books[idx], width=175, caption=f'{names_of_related_books[idx]} by {authors_of_related_books[idx]}')
             idx+=1
 
-            if idx < len(images_of_related_books):
+            if idx < len(images_of_related_books)-1:
                 cols[1].image(images_of_related_books[idx], width=175, caption=f'{names_of_related_books[idx]} by {authors_of_related_books[idx]}')
             idx+=1 
-            if idx < len(images_of_related_books): 
+            if idx < len(images_of_related_books)-1: 
                 cols[2].image(images_of_related_books[idx], width=175, caption=f'{names_of_related_books[idx]} by {authors_of_related_books[idx]}')
                 idx = idx + 1
             else:

@@ -13,47 +13,9 @@ def main():
         
         The lists of authors and books are in no way exhaustive, and I will expand the catalog to include more books when funds allow (buying books is expensive!).
 
-        If you have a book or author in mind not currently part of the project, please enter the author's names or book titles below to include in future iterations of the project.
+        If you have a book or author in mind not currently part of the project, please fill out this short Google form: https://forms.gle/Mdh9PAD3jaMLVU7R7
+        
+        It takes less than 5 minutes to complete!
 
     """)
-        #st.image('https://i.ibb.co/NmhK4yY/Hello-This-tool-started-as-a-capstone-project-for-the-MS-in-Data-Analysis-and-Visualization-program.png', use_column_width=True)
-    
-    # form 
-    with st.beta_container():
-        st.markdown('<h2> Would you like to add a book or author?</h2>', unsafe_allow_html=True)
-        st.markdown('<h4>Book Name(s)</h4>', unsafe_allow_html=True)
-        newBookName = st.text_area("Please enter the book name(s), separated by commas")
-        st.markdown('<h4>Author Name(s)</h4>', unsafe_allow_html=True)
-        newBookAuthor = st.text_area("Enter the author name(s), separated by commas")
-
-        st.markdown('<h2> Any questions, feedback or recommendations? </h2>', unsafe_allow_html=True)
-        newFeedback = st.text_area("Enter questions, feedback or recommendations")
-
-        st.markdown('<h2> Would you like to receive email updates about this or similar projects?</h2>', unsafe_allow_html=True)
-        st.markdown('<h4> If so, enter your contact information below</h4>', unsafe_allow_html=True)
-        emailName = st.text_input('Enter name')
-        emailAddress = st.text_input('Enter a valid email address')
-
-         # submit button 
-        clickSubmit = st.button('Submit')
-
-        df = pd.read_csv('df.csv')
-
-        if clickSubmit == True:
-
-            d = {'Book Name(s)': [newBookName], 
-                'Book Author(s)': [newBookAuthor],
-                'Feedback': [newFeedback],
-                'Name': [emailName],
-                'Email': [emailAddress]}
-
-            st.markdown('<h3>Thank you for your feedback!</h3>', unsafe_allow_html=True)
-            
-            df = df.append(d, ignore_index = True)
-            open('df.csv', 'w').write(df.to_csv())
-        
-        else:
-            st.markdown("Click submit to save form responses.")
-
-# main()
-
+  
