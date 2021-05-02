@@ -5,8 +5,8 @@ import numpy as np
 
 def main(): 
     #bookData = pd.read_csv('books_copy.csv')
-    bookData = pd.read_csv('./Data/books2.csv')
-    topicData = pd.read_csv('./Data/melted.csv')
+    bookData = pd.read_csv('app/Data/books2.csv')
+    topicData = pd.read_csv('app/Data/melted.csv')
     bookAuthor = topicData['Author'].unique()
     authors = np.insert(bookAuthor, 0, 'All')
     topics_a = topicData['Topics'].unique()
