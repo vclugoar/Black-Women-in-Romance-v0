@@ -5,8 +5,8 @@ import numpy as np
 def main():
 
 # Use the full page instead of a narrow central column
-    bookData = pd.read_csv('./Data/books.csv')
-    author_df = pd.read_csv('./Data/authors.csv')
+    bookData = pd.read_csv('app/Data/books.csv')
+    author_df = pd.read_csv('app/Data/authors.csv')
     authors = author_df['Name'].unique()
     authorNames = np.insert(authors, 0, "All")
     st.title(f"About the Authors")
