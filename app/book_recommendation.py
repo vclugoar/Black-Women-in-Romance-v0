@@ -39,7 +39,7 @@ def main():
 
     # user input
     box1, box2 = st.beta_columns(2)
-    userSelection = box1.selectbox("Enter a book name:", bookList, index= randrange(0, 392))
+    userSelection = box1.selectbox("Enter a book name:", bookList, index= 128)
     slider = box2.slider("Select level of similarity based on topics", min_value=0.70, max_value=0.99, step=0.01, value=0.85)
     
     descriptionBox = st.checkbox("Show book descriptions", value=False)
